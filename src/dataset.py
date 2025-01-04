@@ -12,7 +12,7 @@ from tqdm import tqdm
 Height = 128
 Width = 128
 
-path = "C:/Data-sets/Melanoma/"
+path = "C:/Data-Sets/Melanoma/"
 imagesPath = path + "ISIC2018_Task1-2_Training_Input/*.jpg"
 maskPath = path + "ISIC2018_Task1_Training_GroundTruth/*.png"
 
@@ -50,9 +50,11 @@ rot1 = iaa.Affine(rotate=(-50, 20))
 rotImg = rot1.augment_image(img)
 
 cv2.imshow("hflipImg", hflipImg)
+cv2.waitKey(0)
 cv2.imshow("vflipImg", vflipImg)
+cv2.waitKey(0)
 cv2.imshow("rotImg", rotImg)
-
+cv2.waitKey(0)
 
 # invetigate the mask
 # downsize the mask , so we can look at the values :

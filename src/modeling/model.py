@@ -28,22 +28,20 @@ def build_model(shape):
 
     # Encoder - model begins with input layer, iterate through list of filters, progressively increasing number of filters in each convolutional block
     for f in num_filters:
-        x = conv_block(
-            x, f
-        )  # for each filtered [crown] apply conv_block function, which includes 2 confolution layeres, batch normalisation, and reulu activation
+        x = conv_block(x, f)
+        # for each filtered [crown] apply conv_block function, which includes 2 confolution layeres, batch normalisation, and reulu activation
         skip_x.append(x)  # track intermediate result in this list
-        x = MaxPool2D((2, 2))(
-            x
-        )  # downsample the feature maps using the max pooling layers
+        x = MaxPool2D((2, 2))(x)
+        # downsample the feature maps using the max pooling layers
 
     # Bridge (bottleneck layer)
 
-    x = conv_block(
-        x, 1024
-    )  # another conv. layer with 1024 layers to capture high-level features
+    x = conv_block(x, 1024)
+    # another conv. layer with 1024 layers to capture high-level features
 
     num_filters.reverse()
-    skip_x.reverse()  # reverse order of filtered crown and feature maps
+    skip_x.reverse()
+    # reverse order of filtered crown and feature maps
 
     # Decoder
     for i, f in enumerate(num_filters):
